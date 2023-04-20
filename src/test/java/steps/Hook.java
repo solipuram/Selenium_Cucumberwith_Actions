@@ -31,10 +31,15 @@ public class Hook extends BaseUtil{
 
     @Before
     public void InitializeTest(Scenario scenario) {
+        
+        
         base.scenarioDef = base.features.createNode(scenario.getName());
-        WebDriverManager.chromedriver().setup();
+        
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--remote-allow-origins=*");
+        
+        WebDriverManager.chromedriver().setup();
         base.Driver = new ChromeDriver(chromeOptions);
     }
 
